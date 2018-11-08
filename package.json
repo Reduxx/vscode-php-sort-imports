@@ -1,0 +1,68 @@
+{
+  "name": "php-sort-imports",
+  "displayName": "PHP Sort Imports",
+  "description": "Sort php imports alphabetically or via length",
+  "version": "0.0.1",
+  "publisher": "Simon Sperling",
+  "engines": {
+    "vscode": "^1.28.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "phpSortImports.sort",
+        "title": "Sort imports"
+      },
+      {
+        "command": "phpSortImports.saveWithoutSorting",
+        "title": "Save file without sorting imports"
+      }
+    ],
+    "configuration": {
+      "title": "PHP Sort Imports configuration",
+      "properties": {
+        "phpSortImports.onSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically sort imports on save."
+        },
+        "phpSortImports.sorting": {
+          "type": "string",
+          "default": "length",
+          "description": "Sort by 'length' or 'alphabetically'."
+        },
+        "phpSortImports.suppressWarnings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Suppress warnings when sorting fails."
+        },
+        "phpSortImports.languages": {
+          "type": "array",
+          "default": ["php"],
+          "description": "Languages to sort on save."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "yarn run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.21",
+    "tslint": "^5.8.0",
+    "@types/node": "^8.10.25",
+    "@types/mocha": "^2.2.42"
+  }
+}
